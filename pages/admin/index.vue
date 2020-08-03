@@ -1,7 +1,11 @@
 <template>
-  <h1>Input user id then click Load button</h1>
+  <div>
+    <h1>Admin pages</h1>
+  </div>
 </template>
 
 <script>
 export default {}
 </script>
+
+<style></style>
