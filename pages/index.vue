@@ -5,34 +5,63 @@
         <h1>Get the latest tech news!</h1>
       </section>
       <section class="featured-posts">
-        <nuxt-link :to="'/posts/' + 1" class="post-preview">
-          <artical>
-            <div class="post-thumbnail"></div>
-            <div class="post-content">
-              <h1>Post Title</h1>
-              <p>Preview Text</p>
-            </div>
-          </artical>
-        </nuxt-link>
-        <nuxt-link :to="'/posts/' + 2" class="post-preview">
-          <artical>
-            <div class="post-thumbnail"></div>
-            <div class="post-content">
-              <h1>Post Title 2</h1>
-              <p>Preview Text 2</p>
-            </div>
-          </artical>
-        </nuxt-link>
+        <PostPreview
+          v-for="v in posts"
+          :id="v.id"
+          :key="v.id"
+          :title="v.title"
+          :preview-text="v.previewText"
+          :thumbnail="v.thumbnail"
+        />
       </section>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import PostPreview from '@/components/Posts/PostPreview'
+export default {
+  components: {
+    PostPreview,
+  },
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          title: 'Post title 1',
+          previewText: 'Preview text 1',
+          thumbnail:
+            'https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+        },
+        {
+          id: 2,
+          title: 'Post title 2',
+          previewText: 'Preview text 18',
+          thumbnail:
+            'https://c4.wallpaperflare.com/wallpaper/286/1013/130/simple-background-blue-gradient-wallpaper-preview.jpg',
+        },
+        {
+          id: 3,
+          title: 'Post title 3',
+          previewText: 'Preview text 15',
+          thumbnail:
+            'https://c4.wallpaperflare.com/wallpaper/286/1013/130/simple-background-blue-gradient-wallpaper-preview.jpg',
+        },
+        {
+          id: 4,
+          title: 'Post title 4',
+          previewText: 'Preview text 12',
+          thumbnail:
+            'https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+        },
+      ],
+    }
+  },
+}
 </script>
 
-<style>
+<style scoped>
 .intro {
   height: 300px;
   position: relative;
@@ -70,44 +99,5 @@ export default {}
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: white;
-  width: 90%;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-/* .featured-posts a {
-  width: 90%;
-} */
-@media (min-width: 850px) {
-  .post-preview {
-    width: 400px;
-    margin: 10px;
-  }
-}
-
-.post-thumbnail {
-  width: 100%;
-  height: 200px;
-  background-position: center;
-  background-size: cover;
-  background-image: url('https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
-}
-
-.post-content {
-  padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
 }
 </style>
