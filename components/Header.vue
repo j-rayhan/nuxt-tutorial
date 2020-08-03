@@ -41,4 +41,12 @@ export default {}
   padding: 10px;
   background: #fff;
 }
+.nav-items a {
+  text-decoration: none;
+  color: #000;
+}
+.nav-items a:hover,
+.nav-items a:active {
+  color: green;
+}
 </style>
