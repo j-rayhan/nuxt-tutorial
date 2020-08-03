@@ -1,11 +1,16 @@
 <template>
   <div class="posts-page">
-    <h1>Post pages</h1>
+    <PostList />
   </div>
 </template>
 
 <script>
-export default {}
+import PostList from '@/components/Posts/PostList'
+export default {
+  components: {
+    PostList,
+  },
+}
 </script>
 
 <style>
