@@ -12,8 +12,12 @@ const createStore = () => {
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
+        if (!process.client) {
+          // eslint-disable-next-line
+          // console.log('PRINT IN %s=====>', 'process', context)
+        }
         // eslint-disable-next-line
-        // console.log('PRINT IN %s=====>', 'init')
+        // console.log('PRINT IN %s=====>', 'init', process)
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             vuexContext.commit('setPosts', [
