@@ -47,6 +47,7 @@ export default {
   methods: {
     onSave() {
       // Save Post
+      // eslint-disable-next-line
       console.log('PRINT IN %s=====>', 'save post', this.editedPost)
     },
     onCancel() {

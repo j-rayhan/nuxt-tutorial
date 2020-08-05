@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     onLoadUser() {
-      console.log('---->', this.userId)
+      // console.log('---->', this.userId)
       this.$router.push('/users/' + this.userId)
     },
   },
