@@ -17,7 +17,7 @@ export default {
   methods: {
     onSubmited(post) {
       axios
-        .post('https://nuxt-blog-85400.firebaseio.com/post.json', post)
+        .post('https://nuxt-blog-85400.firebaseio.com/posts.json', post)
         .then((res) => console.log('---------->', res))
         .catch((e) => console.error('ERROR***', e))
     },

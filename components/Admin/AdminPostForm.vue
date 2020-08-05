@@ -3,6 +3,9 @@
     <AppInput v-model="editedPost.author">Author Name</AppInput>
     <AppInput v-model="editedPost.title">Title</AppInput>
     <AppInput v-model="editedPost.thumbnail">Thumbnail Link</AppInput>
+    <AppInput v-model="editedPost.previewText" control-type="textarea"
+      >Preview Text</AppInput
+    >
     <AppInput v-model="editedPost.content" control-type="textarea"
       >Content</AppInput
     >
@@ -41,6 +44,7 @@ export default {
             title: '',
             thumbnail: '',
             content: '',
+            previewText: '',
           },
     }
   },
