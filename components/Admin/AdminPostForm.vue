@@ -45,6 +45,7 @@ export default {
             thumbnail: '',
             content: '',
             previewText: '',
+            updated: new Date(),
           },
     }
   },

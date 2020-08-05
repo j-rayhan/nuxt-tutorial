@@ -18,7 +18,9 @@ export default {
     onSubmited(post) {
       axios
         .post('https://nuxt-blog-85400.firebaseio.com/posts.json', post)
-        .then((res) => console.log('---------->', res))
+        .then((res) => {
+          this.$router.push('/admin')
+        })
         .catch((e) => console.error('ERROR***', e))
     },
   },

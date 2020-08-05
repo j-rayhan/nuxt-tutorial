@@ -11,7 +11,9 @@
     <section class="post-feedback">
       <p>
         Let me know what you think about the post
-        <a href="mailto:johir.rayhan01@gmail.com">Send your feedback</a>
+        <a href="mailto:feedback@johir.rayhan01@gmail.com"
+          >Send your feedback</a
+        >
       </p>
     </section>
   </div>
