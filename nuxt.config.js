@@ -82,4 +82,8 @@ export default {
   env: {
     baseUrl: process.env.BASE_URL || 'https://nuxt-blog-85400.firebaseio.com',
   },
+  transition: {
+    name: 'fade',
+    mode: 'out-in',
+  },
 }
