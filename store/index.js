@@ -40,7 +40,7 @@ const createStore = () => {
       },
       addPost(vuexContext, post) {
         return axios
-          .post('https://nuxt-blog-85400.firebaseio.com/posts.json', post)
+          .post(process.env.baseUrl + '/posts.json', post)
           .then((res) => {
             vuexContext.commit('addPost', { ...post, id: res.data.name })
           })
@@ -48,10 +48,7 @@ const createStore = () => {
       },
       editPost(vuexContext, post) {
         return axios
-          .put(
-            'https://nuxt-blog-85400.firebaseio.com/posts/' + post.id + '.json',
-            post
-          )
+          .put(process.env.baseUrl + '/posts/' + post.id + '.json', post)
           .then((res) => {
             vuexContext.commit('editPost', post)
           })

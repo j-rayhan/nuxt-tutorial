@@ -79,4 +79,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-85400.firebaseio.com',
+  },
 }
