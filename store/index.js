@@ -10,6 +10,13 @@ const createStore = () => {
       setPosts(state, posts) {
         state.loadedPosts = posts
       },
+      addPost(state, post) {
+        state.loadedPosts.push(post)
+      },
+      editPost(state, post) {
+        const postIndex = state.loadedPosts.findIndex((p) => p.id === post.id)
+        state.loadedPosts[postIndex] = post
+      },
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
@@ -30,49 +37,25 @@ const createStore = () => {
             vuexContext.commit('setPosts', posts)
           })
           .catch((e) => console.error('ERROR***', e))
-
-        // cosnt data = new Promise((resolve, reject) => {
-        //   setTimeout(() => {
-        //     vuexContext.commit('setPosts', [
-        //       {
-        //         id: '1',
-        //         title: 'Post title 1',
-        //         previewText: 'Preview text 1',
-        //         thumbnail:
-        //           'https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg',
-        //       },
-        //       {
-        //         id: '2',
-        //         title: 'Post title 2',
-        //         previewText: 'Preview text 18',
-        //         thumbnail:
-        //           'https://c4.wallpaperflare.com/wallpaper/286/1013/130/simple-background-blue-gradient-wallpaper-preview.jpg',
-        //       },
-        //       {
-        //         id: '3',
-        //         title: 'Post title 3',
-        //         previewText: 'Preview text 15',
-        //         thumbnail:
-        //           'https://c4.wallpaperflare.com/wallpaper/286/1013/130/simple-background-blue-gradient-wallpaper-preview.jpg',
-        //       },
-        //       {
-        //         id: '4',
-        //         title: 'Post title 4',
-        //         previewText: 'Preview text 12',
-        //         thumbnail:
-        //           'https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        //       },
-        //       {
-        //         id: '5',
-        //         title: 'Second Post',
-        //         previewText: 'This is our second post!',
-        //         thumbnail:
-        //           'https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg',
-        //       },
-        //     ])
-        //     resolve()
-        //   }, 1000)
-        // })
+      },
+      addPost(vuexContext, post) {
+        return axios
+          .post('https://nuxt-blog-85400.firebaseio.com/posts.json', post)
+          .then((res) => {
+            vuexContext.commit('addPost', { ...post, id: res.data.name })
+          })
+          .catch((e) => console.error('ERROR***', e))
+      },
+      editPost(vuexContext, post) {
+        return axios
+          .put(
+            'https://nuxt-blog-85400.firebaseio.com/posts/' + post.id + '.json',
+            post
+          )
+          .then((res) => {
+            vuexContext.commit('editPost', post)
+          })
+          .catch((e) => console.error('ERROR***', e))
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit('setPosts', posts)

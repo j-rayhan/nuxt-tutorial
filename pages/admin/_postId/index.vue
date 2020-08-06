@@ -23,7 +23,7 @@ export default {
       )
       .then((res) => {
         return {
-          post: res.data,
+          post: { ...res.data, id: context.params.postId },
         }
       })
       .catch((e) => context.error(e))
@@ -35,13 +35,8 @@ export default {
   },
   methods: {
     onSubmited(post) {
-      axios
-        .put(
-          'https://nuxt-blog-85400.firebaseio.com/posts/' +
-            this.$route.params.postId +
-            '.json',
-          post
-        )
+      this.$store
+        .dispatch('editPost', post)
         .then((res) => {
           this.$router.push('/admin')
         })

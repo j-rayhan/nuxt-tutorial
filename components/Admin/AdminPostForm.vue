@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="onSave">
+    <h1>ID: {{ editedPost.id }}</h1>
     <AppInput v-model="editedPost.author">Author Name</AppInput>
     <AppInput v-model="editedPost.title">Title</AppInput>
     <AppInput v-model="editedPost.thumbnail">Thumbnail Link</AppInput>
