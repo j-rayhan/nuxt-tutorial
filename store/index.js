@@ -4,6 +4,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
+      token: null,
     },
     mutations: {
       setPosts(state, posts) {
@@ -15,6 +16,9 @@ const createStore = () => {
       editPost(state, post) {
         const postIndex = state.loadedPosts.findIndex((p) => p.id === post.id)
         state.loadedPosts[postIndex] = post
+      },
+      setToken(state, token) {
+        state.token = token
       },
     },
     actions: {
@@ -38,20 +42,37 @@ const createStore = () => {
       },
       addPost(vuexContext, post) {
         return this.$axios
-          .$post('/posts.json', post)
+          .$post('/posts.json?auth=' + vuexContext.state.token, post)
           .then((res) => {
-            console.log('PRINT IN %s=====>', 'Index', res)
             vuexContext.commit('addPost', { ...post, id: res.name })
           })
           .catch((e) => console.error('ERROR***', e))
       },
       editPost(vuexContext, post) {
         return this.$axios
-          .$put('/posts/' + post.id + '.json', post)
+          .$put(
+            '/posts/' + post.id + '.json?auth=' + vuexContext.state.token,
+            post
+          )
           .then((res) => {
             vuexContext.commit('editPost', post)
           })
           .catch((e) => console.error('ERROR***', e))
+      },
+      authenticateUser(vuexContext, authData) {
+        const authURL = `https://identitytoolkit.googleapis.com/v1/accounts:${
+          authData.isLogin ? 'signInWithPassword' : 'signUp'
+        }?key=${process.env.fbAPIKEY}`
+        return this.$axios
+          .$post(authURL, {
+            email: authData.email,
+            password: authData.password,
+            returnSecureToken: true,
+          })
+          .then((res) => {
+            vuexContext.commit('setToken', res.idToken)
+          })
+          .catch((e) => console.error('PRINT IN %s=====>', 'auth error', e))
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit('setPosts', posts)
@@ -60,6 +81,9 @@ const createStore = () => {
     getters: {
       loadedPosts(state) {
         return state.loadedPosts
+      },
+      isAuthenticated(state) {
+        return state.token !== null
       },
     },
   })

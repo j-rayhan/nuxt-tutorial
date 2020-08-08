@@ -10,11 +10,12 @@
 import AdminPostForm from '@/components/Admin/AdminPostForm'
 export default {
   name: 'NewPost',
+  middleware: 'auth',
   components: {
     AdminPostForm,
   },
   asyncData(context) {
-    return this.$axios
+    return context.app.$axios
       .$get('/posts/' + context.params.postId + '.json')
       .then((res) => {
         return {

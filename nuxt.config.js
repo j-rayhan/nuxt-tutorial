@@ -83,6 +83,8 @@ export default {
   build: {},
   env: {
     baseUrl: process.env.BASE_URL || 'https://nuxt-blog-85400.firebaseio.com',
+    fbAPIURL: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=',
+    fbAPIKEY: 'AIzaSyCxvLGeubaip7rqD5c5-fdbYYbkuLEso7U',
   },
   transition: {
     name: 'fade',
