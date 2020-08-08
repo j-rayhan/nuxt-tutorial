@@ -1,5 +1,4 @@
 import Vuex from 'vuex'
-import axios from 'axios'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -24,11 +23,10 @@ const createStore = () => {
           // eslint-disable-next-line
           // console.log('PRINT IN %s=====>', 'process', context)
         }
-        // eslint-disable-next-line
-        // console.log('PRINT IN %s=====>', 'init', process)
-        return axios
-          .get('https://nuxt-blog-85400.firebaseio.com/posts.json')
-          .then(({ data }) => {
+        return this.$axios
+          .$get('/posts.json')
+          .then((res) => {
+            const data = res
             const posts = []
             for (const key in data) {
               const element = data[key]
@@ -39,16 +37,17 @@ const createStore = () => {
           .catch((e) => console.error('ERROR***', e))
       },
       addPost(vuexContext, post) {
-        return axios
-          .post(process.env.baseUrl + '/posts.json', post)
+        return this.$axios
+          .$post('/posts.json', post)
           .then((res) => {
-            vuexContext.commit('addPost', { ...post, id: res.data.name })
+            console.log('PRINT IN %s=====>', 'Index', res)
+            vuexContext.commit('addPost', { ...post, id: res.name })
           })
           .catch((e) => console.error('ERROR***', e))
       },
       editPost(vuexContext, post) {
-        return axios
-          .put(process.env.baseUrl + '/posts/' + post.id + '.json', post)
+        return this.$axios
+          .$put('/posts/' + post.id + '.json', post)
           .then((res) => {
             vuexContext.commit('editPost', post)
           })
