@@ -74,7 +74,12 @@ const createStore = () => {
           })
           .then((res) => {
             vuexContext.commit('setToken', res.idToken)
-            vuexContext.dispatch('setLotoutTimer', res.expiresIn * 1000)
+            vuexContext.dispatch('setLogoutTimer', res.expiresIn * 1000)
+            localStorage.setItem('token', res.idToken)
+            localStorage.setItem(
+              'logoutTime',
+              new Date().getTime() + res.expiresIn * 1000
+            )
           })
           .catch((e) => console.error('PRINT IN %s=====>', 'auth error', e))
       },
@@ -82,6 +87,17 @@ const createStore = () => {
         setTimeout(() => {
           vuexContext.commit('clearToken')
         }, duration)
+      },
+      initAuth(vuexContext) {
+        const token = localStorage.getItem('token')
+        const logoutTime = localStorage.getItem('logoutTime')
+
+        if (new Date().getTime() > +logoutTime || !token) return
+        vuexContext.dispatch(
+          'setLogoutTimer',
+          +logoutTime - new Date().getTime()
+        )
+        vuexContext.commit('setToken', token)
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit('setPosts', posts)
