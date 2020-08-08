@@ -10,6 +10,7 @@
 import Header from '@/components/Navigation/Header'
 import Sidenav from '@/components/Navigation/Sidenav'
 export default {
+  middleware: 'log',
   components: {
     Header,
     Sidenav,

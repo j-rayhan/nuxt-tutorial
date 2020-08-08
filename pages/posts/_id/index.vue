@@ -36,6 +36,7 @@ export default {
   head: {
     title: 'The blog title',
   },
+  middleware: 'log',
 }
 </script>
 
