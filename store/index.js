@@ -20,6 +20,9 @@ const createStore = () => {
       setToken(state, token) {
         state.token = token
       },
+      clearToken(state) {
+        state.token = null
+      },
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
@@ -71,8 +74,14 @@ const createStore = () => {
           })
           .then((res) => {
             vuexContext.commit('setToken', res.idToken)
+            vuexContext.dispatch('setLotoutTimer', res.expiresIn * 1000)
           })
           .catch((e) => console.error('PRINT IN %s=====>', 'auth error', e))
+      },
+      setLogoutTimer(vuexContext, duration) {
+        setTimeout(() => {
+          vuexContext.commit('clearToken')
+        }, duration)
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit('setPosts', posts)
