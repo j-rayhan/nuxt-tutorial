@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import Cookie from 'js-cookie'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -80,6 +81,12 @@ const createStore = () => {
               'logoutTime',
               new Date().getTime() + res.expiresIn * 1000
             )
+
+            Cookie.set('jwt', res.idToken)
+            Cookie.set(
+              'logoutTime',
+              new Date().getTime() + res.expiresIn * 1000
+            )
           })
           .catch((e) => console.error('PRINT IN %s=====>', 'auth error', e))
       },
@@ -88,9 +95,24 @@ const createStore = () => {
           vuexContext.commit('clearToken')
         }, duration)
       },
-      initAuth(vuexContext) {
-        const token = localStorage.getItem('token')
-        const logoutTime = localStorage.getItem('logoutTime')
+      initAuth(vuexContext, req) {
+        let token, logoutTime
+
+        if (req) {
+          if (!req.headers.cookie) return
+
+          token = req.headers.cookie
+            .split(';')
+            .find((c) => c.trim().startsWith('jwt='))
+            .split('=')[1]
+          logoutTime = req.headers.cookie
+            .split(';')
+            .find((c) => c.trim().startsWith('logoutTime='))
+            .split('=')[1]
+        } else {
+          token = localStorage.getItem('token')
+          logoutTime = localStorage.getItem('logoutTime')
+        }
 
         if (new Date().getTime() > +logoutTime || !token) return
         vuexContext.dispatch(
