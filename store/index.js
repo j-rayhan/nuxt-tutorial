@@ -109,13 +109,22 @@ const createStore = () => {
         }
 
         if (new Date().getTime() > +logoutTime || !token) {
-          vuexContext.commit('clearToken')
+          vuexContext.dispatch('logout')
           return
         }
         vuexContext.commit('setToken', token)
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit('setPosts', posts)
+      },
+      logout(vuexContext) {
+        vuexContext.commit('clearToken')
+        Cookie.remove('jwt')
+        Cookie.remove('logoutTime')
+        if (process.client) {
+          localStorage.removeItem('token')
+          localStorage.removeItem('logoutTime')
+        }
       },
     },
     getters: {
