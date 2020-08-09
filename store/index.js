@@ -86,6 +86,9 @@ const createStore = () => {
               'logoutTime',
               new Date().getTime() + +res.expiresIn * 1000
             )
+            return this.$axios.$post('http://localhost:3000/api/store-data', {
+              data: 'Test server middleware',
+            })
           })
           .catch((e) => console.error('PRINT IN %s=====>', 'auth error', e))
       },

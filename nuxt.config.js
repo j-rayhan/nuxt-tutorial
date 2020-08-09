@@ -1,3 +1,5 @@
+import bodyParser from 'body-parser'
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -90,4 +92,5 @@ export default {
     name: 'fade',
     mode: 'out-in',
   },
+  serverMiddleware: [bodyParser.json(), '~/api'],
 }
