@@ -1,6 +1,6 @@
 <template>
   <div class="admin-post-page">
-    <section class="update-post">
+    <section class="post">
       <AdminPostForm :post="post" @submit="onSubmited" />
     </section>
   </div>
@@ -12,21 +12,21 @@ export default {
   name: 'NewPost',
   middleware: ['check-auth', 'auth'],
   components: {
-    AdminPostForm,
+    AdminPostForm
   },
   asyncData(context) {
     return context.app.$axios
       .$get('/posts/' + context.params.postId + '.json')
       .then((res) => {
         return {
-          post: { ...res, id: context.params.postId },
+          post: { ...res, id: context.params.postId }
         }
       })
       .catch((e) => context.error(e))
   },
   data() {
     return {
-      post: {},
+      post: {}
     }
   },
   methods: {
@@ -36,9 +36,12 @@ export default {
         .then((res) => {
           this.$router.push('/admin')
         })
-        .catch((e) => console.error(e))
-    },
-  },
+        .catch((e) => {
+          // eslint-disable-next-line
+            console.error('ERROR***', e)
+        })
+    }
+  }
 }
 </script>
 

@@ -5,7 +5,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
-      token: null,
+      token: null
     },
     mutations: {
       setPosts(state, posts) {
@@ -23,7 +23,7 @@ const createStore = () => {
       },
       clearToken(state) {
         state.token = null
-      },
+      }
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
@@ -42,7 +42,10 @@ const createStore = () => {
             }
             vuexContext.commit('setPosts', posts)
           })
-          .catch((e) => console.error('ERROR***', e))
+          .catch((e) => {
+            // eslint-disable-next-line
+            console.error('ERROR***', e)
+          })
       },
       addPost(vuexContext, post) {
         return this.$axios
@@ -50,7 +53,10 @@ const createStore = () => {
           .then((res) => {
             vuexContext.commit('addPost', { ...post, id: res.name })
           })
-          .catch((e) => console.error('ERROR***', e))
+          .catch((e) => {
+            // eslint-disable-next-line
+            console.error('ERROR***', e)
+          })
       },
       editPost(vuexContext, post) {
         return this.$axios
@@ -61,7 +67,10 @@ const createStore = () => {
           .then((res) => {
             vuexContext.commit('editPost', post)
           })
-          .catch((e) => console.error('ERROR***', e))
+          .catch((e) => {
+            // eslint-disable-next-line
+            console.error('ERROR***', e)
+          })
       },
       authenticateUser(vuexContext, authData) {
         const authURL = `https://identitytoolkit.googleapis.com/v1/accounts:${
@@ -71,7 +80,7 @@ const createStore = () => {
           .$post(authURL, {
             email: authData.email,
             password: authData.password,
-            returnSecureToken: true,
+            returnSecureToken: true
           })
           .then((res) => {
             vuexContext.commit('setToken', res.idToken)
@@ -87,10 +96,13 @@ const createStore = () => {
               new Date().getTime() + +res.expiresIn * 1000
             )
             return this.$axios.$post('http://localhost:3000/api/store-data', {
-              data: 'Test server middleware',
+              data: 'Test server middleware'
             })
           })
-          .catch((e) => console.error('PRINT IN %s=====>', 'auth error', e))
+          .catch((e) => {
+            // eslint-disable-next-line
+            console.error('ERROR***', e)
+          })
       },
       initAuth(vuexContext, req) {
         let token, logoutTime
@@ -106,7 +118,7 @@ const createStore = () => {
             .split(';')
             .find((c) => c.trim().startsWith('logoutTime='))
             .split('=')[1]
-        } else {
+        } else if (process.client) {
           token = localStorage.getItem('token')
           logoutTime = localStorage.getItem('logoutTime')
         }
@@ -128,7 +140,7 @@ const createStore = () => {
           localStorage.removeItem('token')
           localStorage.removeItem('logoutTime')
         }
-      },
+      }
     },
     getters: {
       loadedPosts(state) {
@@ -136,8 +148,8 @@ const createStore = () => {
       },
       isAuthenticated(state) {
         return state.token !== null
-      },
-    },
+      }
+    }
   })
 }
 

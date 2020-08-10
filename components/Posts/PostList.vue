@@ -16,13 +16,13 @@
 import PostPreview from '@/components/Posts/PostPreview'
 export default {
   components: {
-    PostPreview,
+    PostPreview
   },
   props: {
     isAdmin: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {}
@@ -32,8 +32,8 @@ export default {
       // eslint-disable-next-line
       // console.log('PRINT IN %s=====>', 'store', this.$store)
       return this.$store.getters.loadedPosts
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -21,13 +21,13 @@ export default {
     isAdmin: { type: Boolean, required: true },
     title: { type: String, required: true },
     previewText: { type: String, required: true },
-    thumbnail: { type: String, required: true },
+    thumbnail: { type: String, required: true }
   },
   computed: {
     postLink() {
       return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -36,6 +36,7 @@ export default {
   border: 1px solid #ccc;
   box-shadow: 0 2px 2px #ccc;
   background-color: white;
+  margin: 10px;
   width: 90%;
 }
 

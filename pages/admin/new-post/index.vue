@@ -1,6 +1,6 @@
 <template>
-  <div class="admin-new-post">
-    <section class="new-post">
+  <div class="admin-post-page">
+    <section class="post">
       <AdminPostForm @submit="onSubmited" />
     </section>
   </div>
@@ -12,7 +12,7 @@ export default {
   name: 'NewPost',
   middleware: ['check-auth', 'auth'],
   components: {
-    AdminPostForm,
+    AdminPostForm
   },
   methods: {
     onSubmited(post) {
@@ -21,9 +21,12 @@ export default {
         .then((res) => {
           this.$router.push('/admin')
         })
-        .catch((e) => console.error('ERROR***', e))
-    },
-  },
+        .catch((e) => {
+          // eslint-disable-next-line
+            console.error('ERROR***', e)
+        })
+    }
+  }
 }
 </script>
 

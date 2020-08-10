@@ -13,13 +13,13 @@ export default {
   middleware: 'log',
   components: {
     Header,
-    Sidenav,
+    Sidenav
   },
   data() {
     return {
-      displaySidenav: false,
+      displaySidenav: false
     }
-  },
+  }
 }
 </script>
 <style></style>

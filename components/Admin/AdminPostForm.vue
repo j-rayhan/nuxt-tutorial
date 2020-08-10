@@ -26,8 +26,9 @@ export default {
   props: {
     post: {
       type: Object,
-      required: false,
-    },
+      default: () => {},
+      required: false
+    }
   },
   data() {
     return {
@@ -39,8 +40,8 @@ export default {
             thumbnail: '',
             content: '',
             previewText: '',
-            updated: new Date(),
-          },
+            updated: new Date()
+          }
     }
   },
   methods: {
@@ -51,8 +52,8 @@ export default {
     onCancel() {
       // Navigate back
       this.$router.push('/admin')
-    },
-  },
+    }
+  }
 }
 </script>
 

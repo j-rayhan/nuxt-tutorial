@@ -28,15 +28,15 @@ export default {
       .$get('/posts/' + context.params.id + '.json')
       .then((res) => {
         return {
-          loadedPost: res,
+          loadedPost: res
         }
       })
       .catch((e) => context.error(e))
   },
   head: {
-    title: 'The blog title',
+    title: 'The blog title'
   },
-  middleware: 'log',
+  middleware: 'log'
 }
 </script>
 

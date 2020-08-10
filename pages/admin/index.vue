@@ -1,12 +1,12 @@
 <template>
   <div class="admin-page">
-    <section class="new-post">
-      <AppButton @click="$router.push('/admin/new-post/')"
-        >Create New Post</AppButton
-      >
-      <AppButton style="margin-left: 15px;" @click="onLogout"
-        >Log Out</AppButton
-      >
+    <section class="post">
+      <AppButton @click="$router.push('/admin/new-post/')">
+        Create New Post
+      </AppButton>
+      <AppButton btn-style="log-out-btn" @click="onLogout">
+        Log Out
+      </AppButton>
     </section>
     <section class="existing-posts">
       <h1>Existing Post</h1>
@@ -22,16 +22,16 @@ export default {
     onLogout() {
       this.$store.dispatch('logout')
       this.$router.push('/admin/auth')
-    },
-  },
+    }
+  }
 }
 </script>
 
-<style>
+<style scoped>
 .admin-page {
   padding: 20px;
 }
-.new-post {
+.post {
   text-align: center;
   border-bottom: 2px solid #ccc;
   padding-bottom: 10px;

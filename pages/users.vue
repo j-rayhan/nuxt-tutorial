@@ -12,16 +12,16 @@
 export default {
   data() {
     return {
-      userId: '',
+      userId: ''
     }
   },
   methods: {
     onLoadUser() {
       // console.log('---->', this.userId)
       this.$router.push('/users/' + this.userId)
-    },
+    }
   },
-  layout: 'users',
+  layout: 'users'
 }
 </script>
 <style>

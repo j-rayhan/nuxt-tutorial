@@ -12,7 +12,7 @@ const months = [
   'September',
   'October',
   'November',
-  'December',
+  'December'
 ]
 
 const dateFilter = (value) => {

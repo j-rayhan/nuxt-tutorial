@@ -28,13 +28,13 @@ export default {
   props: {
     controlType: {
       type: String,
-      default: 'input',
+      default: 'input'
     },
     value: {
       type: String,
-      default: '',
-    },
-  },
+      default: ''
+    }
+  }
 }
 </script>
 

@@ -1,0 +1,17 @@
+{
+ "editor.formatOnSave": false,
+ "editor.snippetSuggestions": "top",
+ "vetur.format.defaultFormatter.html": "prettier",
+ "editor.tabSize": 1,
+ "eslint.alwaysShowStatus": true,
+ "saveAndRun": {
+   "commands": [
+     {
+       "match": ".*",
+       "cmd": "eslint --ext .js,.vue --ignore-path .gitignore . --fix && exit",
+       "useShortcut": false,
+       "silent": false
+     },
+   ]
+ }
+}

@@ -13,11 +13,11 @@ router.use((req, res, next) => {
 })
 
 router.post('/store-data', (req, res) => {
-  console.log('PRINT IN %s=====>', 'server req', req.body.data)
+  // console.log('PRINT IN %s=====>', 'server req', req.body.data)
   res.status(200).json({ message: 'Success!' })
 })
 
 module.exports = {
   path: '/api',
-  handler: router,
+  handler: router
 }

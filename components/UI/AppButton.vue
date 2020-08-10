@@ -10,20 +10,28 @@ export default {
   props: {
     btnStyle: {
       type: String,
-      default: '',
-    },
-  },
+      default: ''
+    }
+  }
 }
 </script>
 
 <style scoped>
 .button {
   font: inherit;
-  background-color: black;
+  /* background-color: black; */
   color: #fff;
-  padding: 5px;
+  padding: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid skyblue;
+  background-color: #4caf50; /* Green */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .button:hover,
@@ -55,5 +63,15 @@ export default {
 .cancel:active {
   background-color: salmon;
   border: 1px solid transparent;
+}
+.signin {
+  background-color: seagreen;
+}
+.signup {
+  background-color: green;
+}
+.log-out-btn {
+  margin-left: 15px;
+  background-color: red;
 }
 </style>
