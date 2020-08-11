@@ -11,7 +11,7 @@
     "lint": "yarn lint:js",
     "lint:fix": "yarn lint:js --fix",
     "test": "jest",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --remote=r-origin --cleanup"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint"
