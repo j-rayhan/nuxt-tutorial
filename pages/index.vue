@@ -2,7 +2,13 @@
   <div class="container">
     <div class="home-page">
       <section class="intro">
-        <h1>Get the latest tech news!</h1>
+        <h1>
+          A Blog Theme by
+          <p class="tooltip">
+            JRayhan
+            <span class="tooltiptext">Md. Jahirul islam</span>
+          </p>
+        </h1>
       </section>
       <PostList />
     </div>
@@ -26,12 +32,13 @@ export default {
   box-sizing: border-box;
   background-position: center;
   background-size: cover;
-  background-image: url('~assets/images/bg-images.jpeg');
+  background-image: url('~assets/images/home-bg.jpg');
 }
 
 .intro h1 {
   position: absolute;
-  top: 10%;
+  text-align: center;
+  top: 20%;
   left: 5%;
   width: 90%;
   font-size: 1.5rem;
@@ -44,6 +51,45 @@ export default {
   border: 1px solid black;
 }
 
+.tooltip {
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 260px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 0%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 @media (min-width: 768px) {
   .intro h1 {
     font-size: 2rem;

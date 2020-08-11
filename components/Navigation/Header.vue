@@ -43,7 +43,7 @@ export default {
   background-color: black;
   z-index: 100;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 50px;
 }
 
 .logo {

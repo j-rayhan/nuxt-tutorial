@@ -14,6 +14,10 @@
           @click="isLogin = !isLogin"
           >Switch to {{ isLogin ? 'Signup' : 'Signin' }}</AppButton
         >
+        OR
+        <AppButton>
+          <nuxt-link to="/">Back to HOME</nuxt-link>
+        </AppButton>
       </form>
     </div>
   </div>
@@ -71,5 +75,9 @@ export default {
   margin: auto;
   padding: 10px;
   box-sizing: border-box;
+}
+a {
+  color: white;
+  text-decoration: none;
 }
 </style>
